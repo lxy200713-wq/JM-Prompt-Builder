@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<title>即梦 AI 提词器 · 极简高级版</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<header>
+    <h1>即梦 AI · 提词器</h1>
+</header>
+
+<div class="container">
+
+    <div class="upload-box">
+        <label for="fileInput">📂 上传你的关键词库（JSON 或 CSV）</label>
+        <input type="file" id="fileInput" accept=".json,.csv" />
+    </div>
+
+    <input id="search" class="search" placeholder="🔍 搜索关键词…" oninput="searchKeywords()">
+
+    <div id="categories" class="categories"></div>
+
+    <div class="output-box">
+        <textarea id="output" placeholder="生成的 Prompt 会显示在这里"></textarea>
+        <button id="copyBtn" onclick="copyPrompt()">复制</button>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
