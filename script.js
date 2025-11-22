@@ -28,22 +28,23 @@ function loadCategories() {
         container.appendChild(div);
     });
 
-    updateOutput();
-}
+    function updateOutput() {
+    let outputText = "";
 
-// 点击标签
-function toggleTag(el) {
-    const text = el.innerText;
+    // 遍历数据库的分类顺序
+    Object.keys(keywordDB).forEach(category => {
+        // 找出该分类中被选中的词
+        const selectedInCategory = selected.filter(
+            item => keywordDB[category].includes(item)
+        );
 
-    if (el.classList.contains("active")) {
-        selected = selected.filter(x => x !== text);
-    } else {
-        selected.push(text);
-    }
+        // 若该分类有被选中，则写入标题+内容
+        if (selectedInCategory.length > 0) {
+            outputText += `${category}：\n${selectedInCategory.join("，")}\n\n`;
+        }
+    });
 
-    el.classList.toggle("active");
-    localStorage.setItem("selectedTags", JSON.stringify(selected));
-    updateOutput();
+    document.getElementById("output").value = outputText.trim();
 }
 
 // 搜索关键词
